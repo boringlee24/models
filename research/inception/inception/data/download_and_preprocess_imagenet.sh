@@ -58,7 +58,11 @@ DATA_DIR="${1%/}"
 SCRATCH_DIR="${DATA_DIR}/raw-data/"
 mkdir -p "${DATA_DIR}"
 mkdir -p "${SCRATCH_DIR}"
-WORK_DIR="$0.runfiles/inception/inception"
+echo "data directory is $DATA_DIR"
+echo "scratch directory is $SCRATCH_DIR"
+#WORK_DIR="$0.runfiles/inception/inception"
+WORK_DIR="/home/li.baol/GIT/models_master/research/inception/inception"
+echo "work directory is $WORK_DIR"
 
 # Download the ImageNet data.
 LABELS_FILE="${WORK_DIR}/data/imagenet_lsvrc_2015_synsets.txt"
@@ -88,7 +92,7 @@ BOUNDING_BOX_DIR="${SCRATCH_DIR}bounding_boxes/"
 echo "Finished downloading and preprocessing the ImageNet data."
 
 # Build the TFRecords version of the ImageNet data.
-BUILD_SCRIPT="${WORK_DIR}/build_imagenet_data"
+BUILD_SCRIPT="${WORK_DIR}/data/build_imagenet_data.py"
 OUTPUT_DIRECTORY="${DATA_DIR}"
 IMAGENET_METADATA_FILE="${WORK_DIR}/data/imagenet_metadata.txt"
 

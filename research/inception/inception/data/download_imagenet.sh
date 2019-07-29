@@ -38,8 +38,14 @@ END
   read -p "Access key: " IMAGENET_ACCESS_KEY
 fi
 
+echo "now inside the download_imagenet.sh script"
+
 OUTDIR="${1:-./imagenet-data}"
-SYNSETS_FILE="${2:-./synsets.txt}"
+SYNSETS_FILE="imagenet_lsvrc_2015_synsets.txt"
+#"${2:-./synsets.txt}"
+
+echo "OUTDIR is $OUTDIR"
+echo "SYNSETS_FILE is $SYNSETS_FILE"
 
 echo "Saving downloaded files to $OUTDIR"
 mkdir -p "${OUTDIR}"
@@ -87,6 +93,7 @@ wget -nd -c "${BASE_URL}/${TRAIN_TARBALL}"
 
 # Un-compress the individual tar-files within the train tar-file.
 echo "Uncompressing individual train tar-balls in the training data."
+echo "Output path is $OUTPUT_PATH"
 
 while read SYNSET; do
   echo "Processing: ${SYNSET}"
@@ -102,3 +109,9 @@ while read SYNSET; do
 
   echo "Finished processing: ${SYNSET}"
 done < "${INITIAL_DIR}/${SYNSETS_FILE}"
+
+echo "SYNSETS_FILE is $SYNSETS_FILE"
+echo "Finished reading ${INITIAL_DIR}/${SYNSETS_FILE} line by line"
+echo "Now exiting the download_imagenet.sh script"
+
+
